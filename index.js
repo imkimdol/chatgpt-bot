@@ -1,5 +1,5 @@
 import { ChatGPTAPIBrowser } from 'chatgpt';
-import { Client, Collection, Events, GatewayIntentBits, REST, Routes } from 'discord.js';
+import { Client, Collection, Events, SlashCommandBuilder, GatewayIntentBits, REST, Routes } from 'discord.js';
 import dotenv from "dotenv";
 
 dotenv.config();
@@ -18,11 +18,11 @@ await chatGPTAPI.initSession();
 const query = {
     data: new SlashCommandBuilder()
         .setName('query')
-        .setDescription('')
+        .setDescription('Queries ChatGPT with specified message')
         .addStringOption(option =>
             option
                 .setName('input')
-                .setDescription('The input to echo back')
+                .setDescription('The message ask ChatGOT with.')
                 .setMaxLength(2000)
                 .setRequired(true)),
     async execute(interaction) {
@@ -33,15 +33,13 @@ const query = {
 }};
 
 const rest = new REST({ version: '10' }).setToken(process.env.DISCORD_TOKEN);
-
-data = await rest.put(
+await rest.put(
     Routes.applicationCommands(process.env.CLIENT_ID),
-    { body: [query] },
+    { body: [query.data.toJSON()] },
 );
 
 const client = new Client({ intents: [GatewayIntentBits.Guilds] });
 client.commands = new Collection();
-
 client.commands.set("query", query);
 
 client.login(process.env.DISCORD_TOKEN);
