@@ -1,6 +1,6 @@
 import { ChatGPTAPIBrowser } from 'chatgpt';
 import { Client, Collection, Events, SlashCommandBuilder, GatewayIntentBits, REST, Routes } from 'discord.js';
-import dotenv from "dotenv";
+import dotenv from 'dotenv';
 
 dotenv.config();
 
@@ -26,7 +26,7 @@ const query = {
         .addStringOption(option =>
             option
                 .setName('input')
-                .setDescription('The message ask ChatGOT with.')
+                .setDescription('The message to ask ChatGPT.')
                 .setMaxLength(2000)
                 .setRequired(true)),
     async execute(interaction) {
