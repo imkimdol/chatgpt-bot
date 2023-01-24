@@ -13,6 +13,7 @@
     "dotenv": "^16.0.3",
     "erlpack": "discord/erlpack",
     "glob": "^8.1.0",
+    "puppeteer": "^19.6.0",
     "utf-8-validate": "^6.0.1",
     "zlib-sync": "^0.1.7"
   }
