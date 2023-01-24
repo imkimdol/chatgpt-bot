@@ -2,6 +2,7 @@
   "name": "chatgpt-bot",
   "version": "1.0.0",
   "main": "index.js",
+  "type": "module",
   "author": "lodmik <kimdol@proton.me>",
   "license": "MIT",
   "dependencies": {
