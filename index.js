@@ -6,16 +6,12 @@ dotenv.config();
 
 
 
-
-
 const chatGPTAPI = new ChatGPTAPIBrowser({
     email: process.env.OPENAI_EMAIL,
     password: process.env.OPENAI_PASSWORD
 });
 
 await chatGPTAPI.initSession();
-
-
 
 
 
@@ -49,8 +45,6 @@ client.commands = new Collection();
 client.commands.set("query", query);
 
 client.login(process.env.DISCORD_TOKEN);
-
-
 
 
 
