@@ -50,6 +50,8 @@ const followUp = {
     async execute(interaction) {
         if (result == null) {
             await interaction.reply("No previous message to follow up on.");
+            await wait(4000);
+		    await interaction.deleteReply();
         } else {
             const input = interaction.options.getString('input');
             await interaction.deferReply();
