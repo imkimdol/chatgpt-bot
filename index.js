@@ -6,6 +6,7 @@ dotenv.config();
 
 
 
+// Login to chatGPT
 const chatGPTAPI = new ChatGPTAPIBrowser({
     email: process.env.OPENAI_EMAIL,
     password: process.env.OPENAI_PASSWORD
@@ -15,6 +16,7 @@ await chatGPTAPI.initSession();
 
 
 
+// Discord init
 const query = {
     data: new SlashCommandBuilder()
         .setName('query')
@@ -29,7 +31,8 @@ const query = {
         const input = interaction.options.getString('input');
         await interaction.deferReply();
         const result = await chatGPTAPI.sendMessage(input)
-		await interaction.editReply(result.response);
+		await interaction.editReply(input);
+        await interaction.followUp(result.response);
 }};
 
 const rest = new REST({ version: '10' }).setToken(process.env.DISCORD_TOKEN);
@@ -46,6 +49,7 @@ client.login(process.env.DISCORD_TOKEN);
 
 
 
+// Discord events
 client.once(Events.ClientReady, c => {
 	console.log(`Ready! Logged in as ${c.user.tag}`);
 });
